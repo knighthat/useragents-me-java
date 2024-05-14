@@ -23,15 +23,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - id: extractor
-      name: Extract version from pom.xml
-      run: |
-        echo "groupid=$(grep -oP '<groupId>\K[^<]+' pom.xml | head -n1)" >> $GITHUB_OUTPUT
-        
-        echo "artifactid=$(grep -oP '<artifactId>\K[^<]+' pom.xml | head -n1)" >> $GITHUB_OUTPUT
-        
-        echo "version=$(grep -oP '<version>\K[^<]+' pom.xml | head -n1)" >> $GITHUB_OUTPUT
-
     - name: maven-settings-xml-action
       uses: whelk-io/maven-settings-xml-action@v22
       with:
